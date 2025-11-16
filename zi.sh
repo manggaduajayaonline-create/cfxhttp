@@ -13,14 +13,14 @@ mkdir /etc/zivpn 1> /dev/null 2> /dev/null
 wget https://raw.githubusercontent.com/manggaduajayaonline-create/cfxhttp/refs/heads/main/config.json -O /etc/zivpn/config.json 1> /dev/null 2> /dev/null
 
 echo "Generating cert files:"
-openssl genrsa -out /etc/hysteria/hysteria.ca.key 2048  2048
-openssl req -new -x509 -days 3650 -key /etc/hysteria/hysteria.ca.key -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=Hysteria Root CA" -out /etc/hysteria/hysteria.ca.crt
-openssl req -newkey rsa:2048 -nodes -keyout /etc/hysteria/hysteria.server.key -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=$DOMAIN" -out /etc/hysteria/hysteria.server.csr
-openssl x509 -req -extfile <(printf "subjectAltName=DNS:$DOMAIN,DNS:$DOMAIN") -days 3650 -in /etc/hysteria/hysteria.server.csr -CA /etc/hysteria/hysteria.ca.crt -CAkey /etc/hysteria/hysteria.ca.key -CAcreateserial -out /etc/hysteria/hysteria.server.crt
-openssl genpkey -algorithm RSA -out /etc/hysteria/hysteria.ca.key
-openssl req -x509 -new -nodes -key /etc/hysteria/hysteria.ca.key -days 3650 -out /etc/hysteria/hysteria.ca.crt -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=Hysteria Root CA"
-openssl req -newkey rsa:2048 -nodes -keyout /etc/hysteria/hysteria.server.key -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=$DOMAIN" -out /etc/hysteria/hysteria.server.csr
-openssl x509 -req -extfile <(printf "subjectAltName=DNS:$DOMAIN") -days 3650 -in /etc/hysteria/hysteria.server.csr -CA /etc/hysteria/hysteria.ca.crt -CAkey /etc/hysteria/hysteria.ca.key -CAcreateserial -out /etc/hysteria/hysteria.server.crt
+openssl genrsa -out /etc/zivpn/hysteria.ca.key 2048  2048
+openssl req -new -x509 -days 3650 -key /etc/zivpn/hysteria.ca.key -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=Hysteria Root CA" -out /etc/zivpn/hysteria.ca.crt
+openssl req -newkey rsa:2048 -nodes -keyout /etc/zivpn/hysteria.server.key -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=$DOMAIN" -out /etc/zivpn/hysteria.server.csr
+openssl x509 -req -extfile <(printf "subjectAltName=DNS:$DOMAIN,DNS:$DOMAIN") -days 3650 -in /etc/zivpn/hysteria.server.csr -CA /etc/zivpn/hysteria.ca.crt -CAkey /etc/zivpn/hysteria.ca.key -CAcreateserial -out /etc/zivpn/hysteria.server.crt
+openssl genpkey -algorithm RSA -out /etc/zivpn/hysteria.ca.key
+openssl req -x509 -new -nodes -key /etc/zivpn/hysteria.ca.key -days 3650 -out /etc/zivpn/hysteria.ca.crt -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=Hysteria Root CA"
+openssl req -newkey rsa:2048 -nodes -keyout /etc/zivpn/hysteria.server.key -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=$DOMAIN" -out /etc/zivpn/hysteria.server.csr
+openssl x509 -req -extfile <(printf "subjectAltName=DNS:$DOMAIN") -days 3650 -in /etc/zivpn/hysteria.server.csr -CA /etc/zivpn/hysteria.ca.crt -CAkey /etc/zivpn/hysteria.ca.key -CAcreateserial -out /etc/zivpn/hysteria.server.crt
 sysctl -w net.core.rmem_max=16777216 1> /dev/null 2> /dev/null
 sysctl -w net.core.wmem_max=16777216 1> /dev/null 2> /dev/null
 cat <<EOF > /etc/systemd/system/zivpn.service
