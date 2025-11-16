@@ -1,9 +1,4 @@
-![](https://github.com/powermx/dl/blob/master/zivpn.png)
 
-UDP server installation for ZIVPN Tunnel (SSH/DNS/UDP) VPN app.
-<br>
-
->Server binary for Linux amd64 and arm.
 
 #### Installation AMD
 ```
@@ -27,5 +22,4 @@ Client App available:
 <a href="https://play.google.com/store/apps/details?id=com.zi.zivpn" target="_blank" rel="noreferrer">Download APP on Playstore</a>
 > ZiVPN
                 
-----
-Bash script by PowerMX
+
