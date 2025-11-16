@@ -3,6 +3,8 @@
 # Creator Zahid Islam
 
 echo -e "Updating server"
+sudo apt update -y
+sudo apt install ufw -y
 systemctl stop zivpn.service 1> /dev/null 2> /dev/null
 echo -e "Downloading UDP Service"
 wget https://raw.githubusercontent.com/manggaduajayaonline-create/cfxhttp/refs/heads/main/udp-zivpn-linux-amd64 -O /usr/local/bin/zivpn 1> /dev/null 2> /dev/null
