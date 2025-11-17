@@ -13,7 +13,7 @@ mkdir /etc/zivpn 1> /dev/null 2> /dev/null
 wget https://raw.githubusercontent.com/manggaduajayaonline-create/cfxhttp/refs/heads/main/config.json -O /etc/zivpn/config.json 1> /dev/null 2> /dev/null
 
 echo "Generating cert files:"
-openssl genrsa -out /etc/zivpn/hysteria.ca.key prime256v1  prime256v1
+openssl genrsa -out /etc/zivpn/hysteria.ca.key 2048  2048
 openssl req -new -x509 -sha256 -days 3650 -key /etc/zivpn/hysteria.ca.key -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=Hysteria Root CA" -out /etc/zivpn/hysteria.ca.crt
 openssl req -newkey rsa:2048 -nodes -keyout /etc/zivpn/hysteria.server.key -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=server.manggaduajaya.qzz.io
 " -out /etc/zivpn/hysteria.server.csr
@@ -22,7 +22,7 @@ openssl x509 -req -extfile <(printf "subjectAltName=DNS:server.manggaduajaya.qzz
 ") -days 3650 -in /etc/zivpn/hysteria.server.csr -CA /etc/zivpn/hysteria.ca.crt -CAkey /etc/zivpn/hysteria.ca.key -CAcreateserial -out /etc/zivpn/hysteria.server.crt
 openssl genpkey -algorithm RSA -out /etc/zivpn/hysteria.ca.key
 openssl req -x509 -new -nodes -key /etc/zivpn/hysteria.ca.key -days 9999 -out /etc/zivpn/hysteria.ca.crt -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=Hysteria Root CA"
-openssl req -newkey rsa:prime256v1 -nodes -keyout /etc/zivpn/hysteria.server.key -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=server.manggaduajaya.qzz.io
+openssl req -newkey rsa:2048 -nodes -keyout /etc/zivpn/hysteria.server.key -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=server.manggaduajaya.qzz.io
 " -out /etc/zivpn/hysteria.server.csr
 openssl x509 -req -extfile <(printf "subjectAltName=DNS:server.manggaduajaya.qzz.io
 ") -days 3650 -in /etc/zivpn/hysteria.server.csr -CA /etc/zivpn/hysteria.ca.crt -CAkey /etc/zivpn/hysteria.ca.key -CAcreateserial -out /etc/zivpn/hysteria.server.crt
